@@ -56,7 +56,7 @@ class TestSystem {
                     var rightAnswer = rightAnswers[questCount];
 
                     /* Проверяем на правильность полученный ответ: если он не правльный выводим правильный ответ */
-                    System.out.println(myNumCheck);
+
                     int foo = Integer.parseInt(myNumCheck);
 
                     if (foo == rightAnswer) {
