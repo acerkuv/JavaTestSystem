@@ -30,8 +30,15 @@ class Questions extends Test{
 }
 class Answer extends Questions{
     String text;
-    String showText(){
-        return text;
+    String showText(boolean ans){
+        if (ans){
+            var s = "Правильно";
+            return s;
+        }else {
+            var s = "Ошибка";
+            return s;
+        }
+
     }
 }
 
@@ -58,12 +65,14 @@ public class TestClassesTemp {
         //Выводим очередной вопрос в цикле
         for (int i = 0; i < AllAnswers.length; i++) {
             //Инициализируем и создаем экземпляр класса очеродного вопроса
-            Test questions = new Test();
+            Answer questions = new Answer();
             questions.questions = AllQuestions[i];
             // Аналонично поступаем с очередным списком вариантов ответов
-            Questions answers = new Questions();
+            Answer answers = new Answer();
             answers.answers = AllAnswers[i];
             answers.rightAnswerIndex = AllRightAnswersValues[i];
+
+
 
             //Вывод на экран очередного вопроса
             System.out.println(questions.questions);
@@ -86,22 +95,19 @@ public class TestClassesTemp {
 
                     //Если введено число, то проверяем на праильность ответа пользователя с правильным вар
                     if (foo){
-                        if (Integer.parseInt(userInput)== answers.rightAnswerIndex) {
-                            Answer cost = new Answer();
-                            cost.text = "Правильно";
-                            System.out.println(cost.showText());
+
+                        boolean answerOk = answers.ask(Integer.parseInt(userInput));
+                        if (answerOk) {
+
+                            System.out.println(answers.showText(true));
                             counterRightAnswers++;
                             going = false;
+
                         }else{
-                            Answer cost = new Answer();
-                            cost.text = "Неверно";
-                            System.out.println(cost.showText());
+                            System.out.println(answers.showText(false));
                             going = false;
                         }
 
-
-//                    System.out.println(answers.ask(2));
-                    ///
                 }else{
                         System.out.println("Введите число");
                     }
